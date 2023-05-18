@@ -10,12 +10,10 @@ const NavBar = () => {
     <div className="bg-gradient-to-r from-nav to-bar ">
       <div className="custom-container">
         <div className="relative flex items-center justify-between">
-          <div className="flex items-center gap-0">
+          <Link to="/" className="flex items-center gap-0">
             <img className="h-8 w-8 -mr-1" src={logo} alt="blank" />
-            <Link to="/" className=" font-extrabold text-4xl ">
-              ceFig
-            </Link>
-          </div>
+            <div className=" font-extrabold text-4xl ">ceFig</div>
+          </Link>
 
           {/* nav section  */}
 
@@ -91,12 +89,10 @@ const NavBar = () => {
                   <div className="p-5 bg-[#1b1d2a] border rounded-lg shadow-sm">
                     {/* logo */}
                     <div className="flex items-center justify-between mg-4">
-                      <div className="flex items-center gap-0">
-                        <img className="h-7 w-7 -mr-1" src={logo} alt="blank" />
-                        <Link to="/" className=" font-extrabold text-3xl ">
-                          ceFig
-                        </Link>
-                      </div>
+                      <Link to="/" className="flex items-center gap-0">
+                        <img className="h-8 w-8 -mr-1" src={logo} alt="blank" />
+                        <div className=" font-extrabold text-4xl ">ceFig</div>
+                      </Link>
 
                       {/* dropdown close button */}
                       <div>
