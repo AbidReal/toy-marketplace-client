@@ -81,7 +81,7 @@ const NavBar = () => {
               </button>
               {/* mobile responsive nav bar */}
               {isMenuOpen && (
-                <div className="absolute z-20 top-0 left-0 w-full z-10">
+                <div className="absolute z-20 top-0 left-0 w-full">
                   <div className="p-5 bg-[#1b1d2a] border rounded-lg shadow-sm">
                     {/* logo */}
                     <div className="flex items-center justify-between mg-4">
