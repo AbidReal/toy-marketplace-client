@@ -14,8 +14,18 @@ import { EffectCoverflow, Pagination } from "swiper";
 const Gallery = () => {
   return (
     <div className="custom-container">
-      <div className="text-center font-extrabold text-5xl mt-40 mb-20  ">
-        <span className=" text-transparent bg-clip-text bg-gradient-to-br from-indigo-800 via-blue-800 to-btnR">
+      <div className="text-center font-extrabold text-5xl mt-20 mb-10 lg:mt-40 lg:mb-20 lg:text-7xl  ">
+        <span
+          className="text-transparent "
+          style={{
+            "--text-stroke-color": "white",
+            "--text-stroke-width": "2px",
+            WebkitTextStroke:
+              "var(--text-stroke-width) var(--text-stroke-color)",
+            textStroke: "var(--text-stroke-width) var(--text-stroke-color)",
+            // textShadow: "8px 8px #0223B0",
+          }}
+        >
           Gallery
         </span>
       </div>
@@ -42,16 +52,17 @@ const Gallery = () => {
             src="https://live.staticflickr.com/1435/5151054517_2ca28dd61c_b.jpg"
           />
         </SwiperSlide>
+
         <SwiperSlide>
           <img
             className="object-cover aspect-square"
-            src="https://live.staticflickr.com/2877/33733336176_1ff07aa3b9_c.jpg"
+            src="https://live.staticflickr.com/8372/8439549238_94d6d25791_c.jpg"
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
             className="object-cover aspect-square"
-            src="https://live.staticflickr.com/8372/8439549238_94d6d25791_c.jpg"
+            src="https://live.staticflickr.com/3721/9392438133_810e956f5c_z.jpg"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -69,7 +80,7 @@ const Gallery = () => {
         <SwiperSlide>
           <img
             className="object-cover aspect-square"
-            src="https://live.staticflickr.com/3721/9392438133_810e956f5c_z.jpg"
+            src="https://c1.wallpaperflare.com/preview/285/764/43/male-young-man-japanese-anime-cartoon.jpg"
           />
         </SwiperSlide>
       </Swiper>
