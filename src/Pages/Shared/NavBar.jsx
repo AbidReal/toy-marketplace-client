@@ -69,15 +69,11 @@ const NavBar = () => {
               </NavLink>
             </li>
           </ul>
-          <div>
-            <div>
-              <Link to="/login">
-                <button className=" px-4 md:px-7 py-4 btn-color  font-extrabold md:text-lg rounded-lg hidden lg:flex ">
-                  Login
-                </button>
-              </Link>
-            </div>
-          </div>
+          <Link to="/login">
+            <button className="  md:px-7 py-4 btn-color  font-extrabold md:text-lg rounded-lg hidden lg:flex ">
+              Login
+            </button>
+          </Link>
           <div className="flex items-center space-x-4 md:space-x-10">
             <div className="lg:hidden">
               <button onClick={() => setIsMenuOpen(true)}>
@@ -85,7 +81,7 @@ const NavBar = () => {
               </button>
               {/* mobile responsive nav bar */}
               {isMenuOpen && (
-                <div className="absolute top-0 left-0 w-full z-10">
+                <div className="absolute z-20 top-0 left-0 w-full z-10">
                   <div className="p-5 bg-[#1b1d2a] border rounded-lg shadow-sm">
                     {/* logo */}
                     <div className="flex items-center justify-between mg-4">
