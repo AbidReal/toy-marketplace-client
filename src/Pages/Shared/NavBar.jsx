@@ -70,7 +70,7 @@ const NavBar = () => {
             </li>
           </ul>
           <Link to="/login">
-            <button className="  md:px-7 py-4 btn-color  font-extrabold md:text-lg rounded-lg hidden lg:flex ">
+            <button className=" items-end md:px-7 py-4 btn-color  font-extrabold md:text-lg rounded-lg hidden lg:flex ml-auto ">
               Login
             </button>
           </Link>
