@@ -1,9 +1,20 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../../../src/assets/logo_white.svg";
+import { AuthContext } from "../../provider/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((error) => console.log(error));
+  };
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -69,11 +80,46 @@ const NavBar = () => {
               </NavLink>
             </li>
           </ul>
-          <Link to="/login">
-            <button className=" items-end md:px-7 py-4 btn-color  font-extrabold md:text-lg rounded-lg hidden lg:flex">
-              Login
-            </button>
-          </Link>
+          <div className="flex items-center gap-5">
+            {user && (
+              <NavLink className="text-5xl hidden lg:block">
+                <div className=" object-cover relative group  ">
+                  {user.photoURL ? (
+                    <img
+                      className="h-14 w-14 rounded-full ring-4 ring-blue-600 "
+                      src={user?.photoURL}
+                    ></img>
+                  ) : (
+                    <FaUserCircle className="text-blue-600 h-14 w-14"></FaUserCircle>
+                  )}
+
+                  {user.displayName && (
+                    <div
+                      className="absolute bg-gray-800 text-white py-1 px-2 rounded-md text-sm pointer-events-none transition-opacity opacity-0 group-hover:opacity-100  "
+                      style={{ whiteSpace: "nowrap" }}
+                    >
+                      {user?.displayName}
+                    </div>
+                  )}
+                </div>
+              </NavLink>
+            )}
+
+            {user ? (
+              <button
+                onClick={handleLogOut}
+                className=" px-4  py-4 btn-color  font-extrabold md:text-lg rounded-lg "
+              >
+                Logout
+              </button>
+            ) : (
+              <Link to="/login">
+                <button className=" px-4  py-4 btn-color  font-extrabold md:text-lg rounded-lg ">
+                  Login
+                </button>
+              </Link>
+            )}
+          </div>
           <div className=" lg:hidden flex items-center space-x-4 md:space-x-10">
             <div className="lg:hidden">
               <button onClick={() => setIsMenuOpen(true)}>
@@ -124,6 +170,45 @@ const NavBar = () => {
                           <Link to="/blogs" className="nav-items-style">
                             Blogs
                           </Link>
+                        </li>
+                        <li>
+                          {user ? (
+                            <div className="flex flex-col gap-5">
+                              <NavLink className="text-5xl  lg:hidden">
+                                <div className=" object-cover relative group  ">
+                                  {user.photoURL ? (
+                                    <img
+                                      className="h-10 w-10 "
+                                      src={user?.photoURL}
+                                    ></img>
+                                  ) : (
+                                    <FaUserCircle className="text-blue-600 h-14 w-14"></FaUserCircle>
+                                  )}
+
+                                  {user.displayName && (
+                                    <div
+                                      className="absolute bg-gray-800 text-white py-1 px-2 rounded-md text-sm pointer-events-none transition-opacity opacity-0 group-hover:opacity-100  "
+                                      style={{ whiteSpace: "nowrap" }}
+                                    >
+                                      {user?.displayName}
+                                    </div>
+                                  )}
+                                </div>
+                              </NavLink>
+                              <button
+                                onClick={handleLogOut}
+                                className=" px-4  py-4 btn-color  font-extrabold md:text-lg rounded-lg "
+                              >
+                                Logout
+                              </button>
+                            </div>
+                          ) : (
+                            <Link to="/login">
+                              <button className=" px-4  py-4 btn-color  font-extrabold md:text-lg rounded-lg ">
+                                Login
+                              </button>
+                            </Link>
+                          )}
                         </li>
                       </ul>
                     </nav>
