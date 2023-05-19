@@ -15,7 +15,7 @@ const Gallery = () => {
   return (
     <div className="custom-container">
       <div className="text-center font-extrabold text-5xl mt-40 mb-20  ">
-        <span className=" text-transparent bg-clip-text bg-gradient-to-br from-blue-800 to-btnR">
+        <span className=" text-transparent bg-clip-text bg-gradient-to-br from-indigo-800 via-blue-800 to-btnR">
           Gallery
         </span>
       </div>

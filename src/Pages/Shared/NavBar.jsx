@@ -7,7 +7,7 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="bg-gradient-to-r from-nav to-bar ">
+    <div>
       <div className="custom-container">
         <div className="relative flex items-center justify-between">
           <Link to="/" className="flex items-center gap-0">
@@ -70,11 +70,11 @@ const NavBar = () => {
             </li>
           </ul>
           <Link to="/login">
-            <button className=" items-end md:px-7 py-4 btn-color  font-extrabold md:text-lg rounded-lg hidden lg:flex ml-auto ">
+            <button className=" items-end md:px-7 py-4 btn-color  font-extrabold md:text-lg rounded-lg hidden lg:flex">
               Login
             </button>
           </Link>
-          <div className="flex items-center space-x-4 md:space-x-10">
+          <div className=" lg:hidden flex items-center space-x-4 md:space-x-10">
             <div className="lg:hidden">
               <button onClick={() => setIsMenuOpen(true)}>
                 <Bars3Icon className="w-6"></Bars3Icon>
