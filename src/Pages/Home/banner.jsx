@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const banner = () => {
   return (
     <div className="custom-container">
@@ -6,9 +8,11 @@ const banner = () => {
           <div>
             The Best place to <br /> find your favorite <br /> Action Figures
           </div>
-          <button className=" mt-10 px-7 py-4 btn-color font-extrabold text-lg rounded-lg  lg:flex ">
-            Collections
-          </button>
+          <Link to="/all-toys">
+            <button className=" mt-10 px-7 py-4 btn-color font-extrabold text-lg rounded-lg  lg:flex ">
+              Collections
+            </button>
+          </Link>
         </div>
 
         <div className=" flex justify-end lg:overflow-hidden">

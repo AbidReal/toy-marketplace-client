@@ -99,7 +99,7 @@ const Register = () => {
                     className="input input-bordered"
                   />
                 </div>
-                <div className="form-control mt-6">
+                <div className="form-control items-center mt-6">
                   <button
                     type="submit"
                     className="btn bg-gradient-to-r from-btnL to-btnR "
