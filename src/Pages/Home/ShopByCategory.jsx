@@ -58,7 +58,7 @@ const ShopByCategory = () => {
                 key={tab}
               >
                 {actionFigures
-                  .filter((figure) => figure.sub_category === tab)
+                  .filter((figure) => figure.sub_category == tab)
                   .map(({ _id, picture_url, toy_name, price, rating }) => (
                     <div
                       className=" mx-auto border-2 border-white rounded-2xl"

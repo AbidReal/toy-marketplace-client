@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const AddAToy = () => {
+  const { user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -11,19 +14,20 @@ const AddAToy = () => {
     // Handle form submission
     console.log(data);
   };
+  // console.log(user);
 
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
         <div className="mb-4">
-          <label className="block mb-2" htmlFor="pictureUrl">
+          <label className="block mb-2" htmlFor="picture_url">
             Picture URL of the toy
           </label>
           <input
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border border-gray-300 p-2 rounded text-black"
             type="text"
-            id="pictureUrl"
-            {...register("pictureUrl", { required: true })}
+            id="picture_url"
+            {...register("picture_url", { required: true })}
           />
           {errors.pictureUrl && (
             <span className="text-red-500">Picture URL is required</span>
@@ -31,14 +35,14 @@ const AddAToy = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2" htmlFor="name">
+          <label className="block mb-2" htmlFor="toy_name">
             Toy Name
           </label>
           <input
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border border-gray-300 p-2 rounded text-black"
             type="text"
-            id="name"
-            {...register("name", { required: true })}
+            id="toy_name"
+            {...register("toy_name", { required: true })}
           />
           {errors.name && (
             <span className="text-red-500">Name is required</span>
@@ -46,39 +50,41 @@ const AddAToy = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2" htmlFor="sellerName">
+          <label className="block mb-2" htmlFor="seller_name">
             Seller Name
           </label>
           <input
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border border-gray-300 p-2 rounded text-black"
+            value={user?.displayName}
             type="text"
-            id="sellerName"
-            {...register("sellerName")}
+            id="seller_name"
+            {...register("seller_name")}
           />
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2" htmlFor="sellerEmail">
+          <label className="block mb-2" htmlFor="seller_email">
             Seller Email
           </label>
           <input
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border border-gray-300 p-2 rounded text-black"
+            value={user?.email}
             type="email"
-            id="sellerEmail"
-            {...register("sellerEmail")}
+            id="seller_email"
+            {...register("seller_email")}
           />
         </div>
 
         <div className="flex gap-10">
           <div className="mb-4">
-            <label className="block mb-2" htmlFor="subCategory">
+            <label className="block mb-2" htmlFor="sub_category">
               Sub-category
             </label>
 
             <select
-              className=" px-10 border border-gray-300 p-2 rounded text-black"
-              id="subCategory"
-              {...register("subCategory")}
+              className=" px-10 border border-gray-300 p-2 rounded  text-black"
+              id="sub_category"
+              {...register("sub_category")}
             >
               <option value="game">game</option>
               <option value="movie">movie</option>
@@ -90,14 +96,14 @@ const AddAToy = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block mb-2" htmlFor="quantity">
+            <label className="block mb-2" htmlFor="quantity_available">
               Available Quantity
             </label>
             <input
-              className="w-full border border-gray-300 p-2 rounded"
+              className="w-full border border-gray-300 p-2 rounded text-black"
               type="number"
-              id="quantity"
-              {...register("quantity", { required: true })}
+              id="quantity_available"
+              {...register("quantity_available", { required: true })}
             />
             {errors.quantity && (
               <span className="text-red-500">
@@ -112,10 +118,11 @@ const AddAToy = () => {
               Price
             </label>
             <input
-              className=" w-36 border border-gray-300 p-2 rounded"
+              className=" w-36 border border-gray-300 p-2 rounded text-black"
               type="number"
+              step="0.01"
               id="price"
-              {...register("price", { required: true })}
+              {...register("price")}
             />
             {errors.price && (
               <span className="text-red-500">Price is required</span>
@@ -127,10 +134,11 @@ const AddAToy = () => {
               Rating
             </label>
             <input
-              className="w-full border border-gray-300 p-2 rounded"
+              className="w-full border border-gray-300 p-2 rounded text-black"
               type="number"
+              step="0.01"
               id="rating"
-              {...register("rating", { required: true })}
+              {...register("rating")}
             />
             {errors.rating && (
               <span className="text-red-500">Rating is required</span>
@@ -143,7 +151,7 @@ const AddAToy = () => {
             Detail Description
           </label>
           <textarea
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border border-gray-300 p-2 rounded text-black"
             id="description"
             {...register("description", { required: true })}
           />
