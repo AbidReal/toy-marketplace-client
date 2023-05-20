@@ -22,7 +22,7 @@ const ShopByCategory = () => {
   }, []);
   return (
     <div>
-      <div className="custom-container text-center mt-20 ">
+      <div className="custom-container text-center mt-20 lg:mt-40 ">
         <span
           className="text-transparent text-7xl  font-extrabold"
           style={{
@@ -40,7 +40,7 @@ const ShopByCategory = () => {
         {/* tabs */}
         <div className="mt-20">
           <Tabs>
-            <TabList className="flex justify-evenly text-4xl font-bold mb-4  ">
+            <TabList className="flex justify-evenly text-4xl font-bold mb-10  ">
               {tabs.map((tab) => (
                 <Tab
                   className=" border-white border-2 rounded-lg px-7 py-4 hover:cursor-pointer "
@@ -86,7 +86,7 @@ const ShopByCategory = () => {
                         </p>
                       </div>
                       <div>
-                        <Link to="/login">
+                        <Link to={`/toy/${_id}`}>
                           <button className=" px-9  py-4 btn-color  font-extrabold md:text-lg rounded-lg my-6 ">
                             View Details
                           </button>
