@@ -86,7 +86,7 @@ const ShopByCategory = () => {
                         </p>
                       </div>
                       <div>
-                        <Link to={`/toy/${_id}`}>
+                        <Link to={`/toys/${_id}`}>
                           <button className=" px-9  py-4 btn-color  font-extrabold md:text-lg rounded-lg my-6 ">
                             View Details
                           </button>
