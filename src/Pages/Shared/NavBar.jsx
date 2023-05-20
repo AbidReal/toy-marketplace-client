@@ -50,14 +50,16 @@ const NavBar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/my-toys"
-                className={({ isActive }) =>
-                  isActive ? "border-b-4 pb-2 border-blue-800" : "default"
-                }
-              >
-                My Toys
-              </NavLink>
+              {user && (
+                <NavLink
+                  to="/my-toys"
+                  className={({ isActive }) =>
+                    isActive ? "border-b-4 pb-2 border-blue-800" : "default"
+                  }
+                >
+                  My Toys
+                </NavLink>
+              )}
             </li>
             <li>
               <NavLink
@@ -157,9 +159,11 @@ const NavBar = () => {
                           </Link>
                         </li>
                         <li>
-                          <Link to="/my-toys" className="nav-items-style">
-                            My Toys
-                          </Link>
+                          {user && (
+                            <Link to="/my-toys" className="nav-items-style">
+                              My Toys
+                            </Link>
+                          )}
                         </li>
                         <li>
                           <Link to="/add-a-toy" className="nav-items-style">

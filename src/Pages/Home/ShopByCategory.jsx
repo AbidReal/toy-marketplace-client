@@ -10,7 +10,7 @@ const ShopByCategory = () => {
     // Fetch action figures from the database or API
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/toys"); // Replace with your API endpoint
+        const response = await fetch("http://localhost:5000/toys");
         const data = await response.json();
         setActionFigures(data);
       } catch (error) {
@@ -40,7 +40,7 @@ const ShopByCategory = () => {
         {/* tabs */}
         <div className="mt-20">
           <Tabs>
-            <TabList className="flex justify-evenly text-4xl font-bold mb-10  ">
+            <TabList className="flex flex-col lg:flex-row justify-evenly text-4xl font-bold mb-10  ">
               {tabs.map((tab) => (
                 <Tab
                   className=" border-white border-2 rounded-lg px-7 py-4 hover:cursor-pointer "
@@ -54,17 +54,17 @@ const ShopByCategory = () => {
 
             {tabs.map((tab) => (
               <TabPanel
-                className="grid grid-cols-2 text-center text-xl  "
+                className="grid grid-cols-1 lg:grid-cols-3 text-center text-xl  "
                 key={tab}
               >
                 {actionFigures
                   .filter((figure) => figure.sub_category == tab)
                   .map(({ _id, picture_url, toy_name, price, rating }) => (
                     <div
-                      className=" mx-auto border-2 border-white rounded-2xl"
+                      className=" mb-10 mx-auto border-2 border-white rounded-2xl"
                       key={_id}
                     >
-                      <div className="h-96 w-96 m-2  overflow-hidden rounded-2xl  ">
+                      <div className="h-80 w-80 m-2  overflow-hidden rounded-2xl  ">
                         <img
                           className="rounded-2xl object-cover w-full h-full transition-transform duration-300 transform hover:scale-110 "
                           src={picture_url}

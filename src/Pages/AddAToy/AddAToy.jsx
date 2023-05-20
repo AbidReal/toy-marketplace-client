@@ -1,8 +1,21 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddAToy = () => {
+  const handleToast = () => {
+    toast.success("Toy Added Successfully", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
   const { user } = useContext(AuthContext);
   const {
     register,
@@ -12,9 +25,20 @@ const AddAToy = () => {
 
   const onSubmit = (data) => {
     // Handle form submission
+    fetch("http://localhost:5000/toys", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        if (result.insertedId) {
+          handleToast();
+        }
+      });
     console.log(data);
   };
-  // console.log(user);
 
   return (
     <div>
@@ -167,6 +191,7 @@ const AddAToy = () => {
           Add Toy
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
