@@ -108,13 +108,13 @@ const NavBar = () => {
             {user ? (
               <button
                 onClick={handleLogOut}
-                className=" px-4  py-4 btn-color  font-extrabold md:text-lg rounded-lg "
+                className=" px-4  py-4 btn-color  font-extrabold md:text-lg rounded-lg hidden lg:flex "
               >
                 Logout
               </button>
             ) : (
               <Link to="/login">
-                <button className=" px-4  py-4 btn-color  font-extrabold md:text-lg rounded-lg ">
+                <button className=" px-4  py-4 btn-color  font-extrabold md:text-lg rounded-lg hidden lg:flex  ">
                   Login
                 </button>
               </Link>
@@ -212,15 +212,7 @@ const NavBar = () => {
                         </li>
                       </ul>
                     </nav>
-                    <div>
-                      <div>
-                        <Link to="/login">
-                          <button className=" px-4  py-4 btn-color  font-extrabold md:text-lg rounded-lg ">
-                            Login
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
+                    <div></div>
                   </div>
                 </div>
               )}
