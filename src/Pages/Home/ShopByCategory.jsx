@@ -54,17 +54,17 @@ const ShopByCategory = () => {
 
             {tabs.map((tab) => (
               <TabPanel
-                className="flex justify-evenly text-center text-xl gap-20 mt-5 "
+                className="grid grid-cols-2 text-center text-xl  "
                 key={tab}
               >
                 {actionFigures
                   .filter((figure) => figure.sub_category === tab)
                   .map(({ _id, picture_url, toy_name, price, rating }) => (
                     <div
-                      className="border-2 border-white rounded-2xl"
+                      className=" mx-auto border-2 border-white rounded-2xl"
                       key={_id}
                     >
-                      <div className="h-96 w-96 m-2 overflow-hidden rounded-2xl  ">
+                      <div className="h-96 w-96 m-2  overflow-hidden rounded-2xl  ">
                         <img
                           className="rounded-2xl object-cover w-full h-full transition-transform duration-300 transform hover:scale-110 "
                           src={picture_url}
