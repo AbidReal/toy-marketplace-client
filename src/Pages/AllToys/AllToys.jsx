@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const AllToys = () => {
+  const options = [{ value: "Price-Ascending" }, { value: "Price-Descending" }];
+
   const [searchText, setSearchText] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selected, setSelected] = useState(options[0]);
+
   const [toys, setToys] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/toys")
@@ -24,10 +29,48 @@ const AllToys = () => {
       handleSearch();
     }
   };
+  useEffect(() => {
+    setLoading(true);
+    const fetchToys = async () => {
+      try {
+        const [value, type] = selected.value
+          .split("-")
+          .map((item) => item.toLowerCase());
+        const response = await fetch(
+          `http://localhost:5000/toys?value=${value}&type=${type}`
+        );
+        const data = await response.json();
+        setToys(data);
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      }
+    };
+    fetchToys();
+  }, [selected]);
   return (
     <div>
       <div className="custom-container">
-        <div className=" flex justify-end mt-5 mb-10 ">
+        <div className=" flex justify-end mt-5 mb-10 gap-4 ">
+          <div className="dropdown dropdown-hover">
+            <label tabIndex={0} className="btn btn-color ">
+              Sort
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow 
+              bg-[#2d398a]
+               rounded-box w-52"
+            >
+              <li>
+                <a>Price-Ascending</a>
+              </li>
+              <li>
+                <a>Price-Descending</a>
+              </li>
+            </ul>
+          </div>
           <div className="form-control">
             <div className="input-group">
               <input
@@ -62,7 +105,7 @@ const AllToys = () => {
         <table className="table-auto w-full text-xl ">
           <thead>
             <tr>
-              <th>#</th>
+              <th>Number</th>
               <th>Seller</th>
               <th>Toy Name</th>
               <th>Sub-category</th>

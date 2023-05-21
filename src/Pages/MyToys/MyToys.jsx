@@ -98,7 +98,7 @@ const MyToys = () => {
       <table className="table-auto w-full ">
         <thead>
           <tr>
-            <th>#</th>
+            <th>Number</th>
             <th>Toy Name</th>
             <th>Sub-category</th>
             <th>Quantity</th>
