@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "../../../src/assets/logo_white.svg";
 
 const Footer = () => {
   return (
@@ -6,11 +7,7 @@ const Footer = () => {
       <footer className="footer p-10 bg-base-300 text-base-content bg-black text-white">
         <div className=" mx-auto my-auto">
           <Link to="/" className="flex items-center gap-0">
-            <img
-              className="h-8 w-8 -mr-1"
-              src="/src/assets/logo_white.svg"
-              alt="blank"
-            />
+            <img className="h-8 w-8 -mr-1" src={logo} alt="blank" />
             <div className=" font-extrabold text-4xl ">ceFig</div>
           </Link>
         </div>
