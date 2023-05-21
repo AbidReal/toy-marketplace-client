@@ -9,20 +9,22 @@ const AllToys = () => {
     document.title = `${pageName} | AceFig`;
   }, [pageName]);
 
-  const options = [{ value: "Price-Ascending" }, { value: "Price-Descending" }];
-
   const [searchText, setSearchText] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState(options[0]);
+  // const [loading, setLoading] = useState(true);
+  const [asc, setAsc] = useState(true);
 
   const [toys, setToys] = useState([]);
   useEffect(() => {
-    fetch("https://toy-marketplace-server-nine-eta.vercel.app/toys")
+    fetch(
+      `https://toy-marketplace-server-nine-eta.vercel.app/toys?sort=${
+        asc ? "asc" : "desc"
+      }`
+    )
       .then((res) => res.json())
       .then((result) => {
         setToys(result);
       });
-  }, []);
+  }, [asc]);
 
   const handleSearch = () => {
     fetch(
@@ -38,56 +40,26 @@ const AllToys = () => {
       handleSearch();
     }
   };
-  useEffect(() => {
-    setLoading(true);
-    const fetchToys = async () => {
-      try {
-        const [value, type] = selected.value
-          .split("-")
-          .map((item) => item.toLowerCase());
-        const response = await fetch(
-          `https://toy-marketplace-server-nine-eta.vercel.app/toys?value=${value}&type=${type}`
-        );
-        const data = await response.json();
-        setToys(data);
-      } finally {
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
-      }
-    };
-    fetchToys();
-  }, [selected]);
-  if (loading) {
-    return (
-      <div className="flex h-screen justify-center items-center ">
-        <progress className="progress w-56"></progress>
-      </div>
-    );
-  }
+
+  //loader
+  // if (loading) {
+  //   return (
+  //     <div className="flex h-screen justify-center items-center ">
+  //       <progress className="progress w-56"></progress>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
       <div className="custom-container">
         <div className=" flex justify-end mt-5 mb-10 gap-4 ">
-          <div className="dropdown dropdown-hover">
-            <label tabIndex={0} className="btn btn-color ">
-              Sort
-            </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content menu p-2 shadow 
-              bg-[#2d398a]
-               rounded-box w-52"
-            >
-              <li>
-                <a>Price-Ascending</a>
-              </li>
-              <li>
-                <a>Price-Descending</a>
-              </li>
-            </ul>
-          </div>
+          <button
+            className="btn-color px-4 rounded-xl "
+            onClick={() => setAsc(!asc)}
+          >
+            {asc ? "Price: Descending" : "Price: Ascending"}
+          </button>
           <div className="form-control">
             <div className="input-group">
               <input
