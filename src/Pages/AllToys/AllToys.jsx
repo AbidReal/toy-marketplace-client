@@ -10,7 +10,7 @@ const AllToys = () => {
 
   const [toys, setToys] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/toys")
+    fetch("https://toy-marketplace-server-nine-eta.vercel.app/toys")
       .then((res) => res.json())
       .then((result) => {
         setToys(result);
@@ -18,7 +18,9 @@ const AllToys = () => {
   }, []);
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/toySearchByName/${searchText}`)
+    fetch(
+      `https://toy-marketplace-server-nine-eta.vercel.app/toySearchByName/${searchText}`
+    )
       .then((res) => res.json())
       .then((result) => {
         setToys(result);
@@ -37,7 +39,7 @@ const AllToys = () => {
           .split("-")
           .map((item) => item.toLowerCase());
         const response = await fetch(
-          `http://localhost:5000/toys?value=${value}&type=${type}`
+          `https://toy-marketplace-server-nine-eta.vercel.app/toys?value=${value}&type=${type}`
         );
         const data = await response.json();
         setToys(data);

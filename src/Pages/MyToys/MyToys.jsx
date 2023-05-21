@@ -44,7 +44,7 @@ const MyToys = () => {
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [toyToDelete, setToyToDelete] = useState(null);
 
-  const url = `http://localhost:5000/toys?email=${user.email}`;
+  const url = `https://toy-marketplace-server-nine-eta.vercel.app/toys?email=${user.email}`;
 
   useEffect(() => {
     fetch(url)
@@ -59,11 +59,14 @@ const MyToys = () => {
   };
 
   const handleEdit = (toyId) => {
-    fetch(`http://localhost:5000/toys/${toyId?._id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(toyId),
-    })
+    fetch(
+      `https://toy-marketplace-server-nine-eta.vercel.app/toys/${toyId?._id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(toyId),
+      }
+    )
       .then((res) => res.json())
       .then((result) => {
         if (result.modifiedCount > 0) {
@@ -75,9 +78,12 @@ const MyToys = () => {
   };
   const handleConfirmDelete = () => {
     if (toyToDelete) {
-      fetch(`http://localhost:5000/toys/${toyToDelete}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://toy-marketplace-server-nine-eta.vercel.app/toys/${toyToDelete}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

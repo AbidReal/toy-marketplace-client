@@ -25,7 +25,7 @@ const AddAToy = () => {
 
   const onSubmit = (data) => {
     // Handle form submission
-    fetch("http://localhost:5000/toys", {
+    fetch("https://toy-marketplace-server-nine-eta.vercel.app/toys", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

@@ -62,7 +62,9 @@ const router = createBrowserRouter([
         ),
 
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/toys/${params.id}`),
+          fetch(
+            `https://toy-marketplace-server-nine-eta.vercel.app/toys/${params.id}`
+          ),
       },
     ],
   },

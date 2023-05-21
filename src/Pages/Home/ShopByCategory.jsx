@@ -15,7 +15,9 @@ const ShopByCategory = () => {
     // Fetch action figures from the database or API
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/toys");
+        const response = await fetch(
+          "https://toy-marketplace-server-nine-eta.vercel.app/toys"
+        );
         const data = await response.json();
         setActionFigures(data);
       } catch (error) {
