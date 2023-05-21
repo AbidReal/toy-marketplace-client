@@ -17,28 +17,39 @@ const MyToys = () => {
       progress: undefined,
     });
   };
+  const handleToast2 = () => {
+    toast.success("Toy Edited Successfully", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   watch,
-  //   formState: { errors },
-  // } = useForm();
-
-  // const { handleJobUpdate } = props;
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const { user } = useContext(AuthContext);
   const [selectedToy, setSelectedToy] = useState(null);
   const [myToys, setMyToys] = useState([]);
+
+  const [control, setControl] = useState(false);
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [toyToDelete, setToyToDelete] = useState(null);
 
-  const url = `http://localhost:5000/toys?email=${user.email}&sort=1`;
+  const url = `http://localhost:5000/toys?email=${user.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setMyToys(data));
-  }, []);
+  }, [user, control]);
 
   const handleDelete = (toyId) => {
     setToyToDelete(toyId);
@@ -46,7 +57,19 @@ const MyToys = () => {
   };
 
   const handleEdit = (toyId) => {
-    console.log(`Edit toy with ID: ${toyId}`);
+    fetch(`http://localhost:5000/toys/${toyId?._id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(toyId),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.modifiedCount > 0) {
+          handleToast2();
+          setControl(!control);
+        }
+        console.log(result);
+      });
   };
   const handleConfirmDelete = () => {
     if (toyToDelete) {
@@ -189,15 +212,83 @@ const MyToys = () => {
           >
             ✕
           </label>
-          {selectedToy && (
-            <div>
-              <h3 className="font-bold text-lg">{selectedToy.toy_name}</h3>
-              <p className="py-">{selectedToy.sub_category}</p>
-              <p className="py-">{selectedToy.quantity_available}</p>
-              <p className="py-">${selectedToy.price}</p>
-              {/* Add other fields here */}
-            </div>
-          )}
+          {selectedToy &&
+            (() => {
+              const { description, quantity_available, price, _id } =
+                selectedToy;
+              return (
+                <form
+                  onSubmit={handleSubmit(handleEdit)}
+                  className="max-w-md mx-auto"
+                >
+                  <div className="mb-4 ">
+                    <label className="block mb-2 " htmlFor="quantity_available">
+                      Available Quantity
+                    </label>
+                    <input
+                      className="w-full border border-gray-300 p-2 rounded bg-black "
+                      defaultValue={quantity_available}
+                      type="number"
+                      id="quantity_available"
+                      {...register("quantity_available", { required: true })}
+                    />
+                    {errors.quantity && (
+                      <span className="text-red-500">
+                        Available Quantity is required
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="mb-4">
+                    <label className="block mb-2" htmlFor="price">
+                      Price
+                    </label>
+                    <input
+                      className=" w-full border border-gray-300 p-2 rounded bg-black hidden "
+                      type="text"
+                      defaultValue={_id}
+                      id="_id"
+                      {...register("_id")}
+                    />
+                    <input
+                      className=" w-full border border-gray-300 p-2 rounded bg-black"
+                      type="number"
+                      defaultValue={price}
+                      step="0.01"
+                      id="price"
+                      {...register("price")}
+                    />
+                    {errors.price && (
+                      <span className="text-red-500">Price is required</span>
+                    )}
+                  </div>
+
+                  <div className="mb-4">
+                    <label className="block mb-2" htmlFor="description">
+                      Detail Description
+                    </label>
+                    <textarea
+                      defaultValue={description}
+                      className="w-full h-60 border border-gray-300 p-2 rounded bg-black"
+                      id="description"
+                      {...register("description", { required: true })}
+                    />
+                    {errors.description && (
+                      <span className="text-red-500">
+                        Description is required
+                      </span>
+                    )}
+                  </div>
+
+                  <button
+                    className=" mb-10 btn-color text-white px-4 py-2 rounded"
+                    type="submit"
+                  >
+                    Update Toy
+                  </button>
+                </form>
+              );
+            })()}
           <div className="modal-action"></div>
         </label>
       </label>
