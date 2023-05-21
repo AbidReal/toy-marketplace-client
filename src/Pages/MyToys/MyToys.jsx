@@ -45,10 +45,12 @@ const MyToys = () => {
   const [toyToDelete, setToyToDelete] = useState(null);
 
   const url = `http://localhost:5000/toys?email=${user.email}`;
+
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setMyToys(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, control]);
 
   const handleDelete = (toyId) => {

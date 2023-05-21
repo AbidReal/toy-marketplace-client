@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const ShopByCategory = () => {
   const [actionFigures, setActionFigures] = useState([]);
   const tabs = ["game", "movie", "anime"];
+  useEffect(() => {
+    Aos.init({});
+  }, []);
 
   useEffect(() => {
     // Fetch action figures from the database or API
@@ -61,6 +66,7 @@ const ShopByCategory = () => {
                   .filter((figure) => figure.sub_category == tab)
                   .map(({ _id, picture_url, toy_name, price, rating }) => (
                     <div
+                      data-aos="zoom-in"
                       className=" mb-10 mx-auto border-2 border-white rounded-2xl"
                       key={_id}
                     >
