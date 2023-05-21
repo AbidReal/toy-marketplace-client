@@ -153,7 +153,9 @@ const AddAToy = () => {
               type="number"
               step="0.01"
               id="price"
-              {...register("price")}
+              {...register("price", {
+                setValueAs: (value) => parseFloat(value),
+              })}
             />
             {errors.price && (
               <span className="text-red-500">Price is required</span>

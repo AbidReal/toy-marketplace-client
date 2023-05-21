@@ -58,6 +58,14 @@ const AllToys = () => {
     };
     fetchToys();
   }, [selected]);
+  if (loading) {
+    return (
+      <div className="flex h-screen justify-center items-center ">
+        <progress className="progress w-56"></progress>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="custom-container">
