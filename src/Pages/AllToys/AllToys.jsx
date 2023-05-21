@@ -14,7 +14,7 @@ const AllToys = () => {
     <div>
       all toys section
       <div className="custom-container">
-        <table className="table-auto w-full ">
+        <table className="table-auto w-full text-xl ">
           <thead>
             <tr>
               <th>Seller</th>
@@ -50,8 +50,8 @@ const AllToys = () => {
                   <td>{quantity_available}</td>
 
                   <td>
-                    <Link to={`/toy/${_id}`}>
-                      <button className=" px-9  py-4 btn-color  font-extrabold md:text-lg rounded-lg my-6 ">
+                    <Link to={`/toys/${_id}`}>
+                      <button className=" px-5  py-3 btn-color  font-extrabold md:text-lg rounded-lg my-6 ">
                         View Details
                       </button>
                     </Link>
