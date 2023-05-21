@@ -62,6 +62,7 @@ const AllToys = () => {
         <table className="table-auto w-full text-xl ">
           <thead>
             <tr>
+              <th>#</th>
               <th>Seller</th>
               <th>Toy Name</th>
               <th>Sub-category</th>
@@ -88,6 +89,7 @@ const AllToys = () => {
                   key={_id}
                   className={index % 2 === 0 ? "bg-gray-800" : "bg-[#1b1d2a]"}
                 >
+                  <td>{index + 1}</td>
                   <td>{seller_name}</td>
                   <td>{toy_name}</td>
                   <td>{sub_category}</td>

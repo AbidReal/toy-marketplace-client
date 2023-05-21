@@ -3,6 +3,8 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useForm } from "react-hook-form";
+
 const MyToys = () => {
   const handleToast = () => {
     toast.success("Toy Deleted Successfully", {
@@ -15,7 +17,18 @@ const MyToys = () => {
       progress: undefined,
     });
   };
+
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   watch,
+  //   formState: { errors },
+  // } = useForm();
+
+  // const { handleJobUpdate } = props;
+
   const { user } = useContext(AuthContext);
+  const [selectedToy, setSelectedToy] = useState(null);
   const [myToys, setMyToys] = useState([]);
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [toyToDelete, setToyToDelete] = useState(null);
@@ -60,12 +73,14 @@ const MyToys = () => {
       <table className="table-auto w-full ">
         <thead>
           <tr>
+            <th>#</th>
             <th>Toy Name</th>
             <th>Sub-category</th>
             <th>Quantity</th>
             <th>Price</th>
 
             <th>Edit</th>
+            <th>delete</th>
           </tr>
         </thead>
         <tbody>
@@ -78,18 +93,22 @@ const MyToys = () => {
                 key={_id}
                 className={index % 2 === 0 ? "bg-gray-800" : "bg-[#1b1d2a]"}
               >
+                <td>{index + 1}</td>
                 <td>{toy_name}</td>
                 <td>{sub_category}</td>
                 <td>{quantity_available}</td>
                 <td>${price}</td>
 
                 <td>
-                  <button
-                    className="text-blue-500 mr-4"
-                    onClick={() => handleEdit(_id)}
+                  <label
+                    htmlFor="my-modal-5"
+                    className="text-blue-500  flex justify-center hover:cursor-pointer "
+                    onClick={() => setSelectedToy(myToys[index])}
                   >
                     <FaEdit className="h-5 w-5" />
-                  </button>
+                  </label>
+                </td>
+                <td>
                   <button
                     className="text-red-500 "
                     onClick={() => handleDelete(_id)}
@@ -112,7 +131,7 @@ const MyToys = () => {
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
             &#8203;
             <div
-              className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+              className="inline-block align-bottom bg-b rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-headline"
@@ -159,6 +178,29 @@ const MyToys = () => {
       )}
 
       <ToastContainer />
+      {/* daisyUi modal  */}
+      <input type="checkbox" id="my-modal-5" className="modal-toggle  " />
+
+      <label htmlFor="my-modal-5" className="modal cursor-pointer">
+        <label className="  modal-box relative w-11/12 max-w-5xl bg-[#1b1d2a]">
+          <label
+            htmlFor="my-modal-5"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          {selectedToy && (
+            <div>
+              <h3 className="font-bold text-lg">{selectedToy.toy_name}</h3>
+              <p className="py-">{selectedToy.sub_category}</p>
+              <p className="py-">{selectedToy.quantity_available}</p>
+              <p className="py-">${selectedToy.price}</p>
+              {/* Add other fields here */}
+            </div>
+          )}
+          <div className="modal-action"></div>
+        </label>
+      </label>
     </div>
   );
 };
