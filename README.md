@@ -12,4 +12,4 @@ b7a11-toy-marketplace-client-side-AbidReal created by GitHub Classroom
 * If you login then you can see toys details, add toys of your own , edit and delete your added toys. You cannot edit toys uploaded by others. Only admin can do that.
 
 * This website has many attractive sides like animation on scroll, beautiful ui, search feature etc. 
-### Thanks for your hard work, see you in the next assignment  ;-)
+### Thanks for your hard work, see you in the next assignment  ;-).
