@@ -1,10 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/Fc";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+  //dynamic title
+  const pageName = "Login";
+
+  useEffect(() => {
+    document.title = `${pageName} | AceFig`;
+  }, [pageName]);
+
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();

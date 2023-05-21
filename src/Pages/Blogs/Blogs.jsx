@@ -1,4 +1,13 @@
+import { useEffect } from "react";
+
 const Blogs = () => {
+  //dynamic title
+  const pageName = "Blogs";
+
+  useEffect(() => {
+    document.title = `${pageName} | AceFig`;
+  }, [pageName]);
+
   return (
     <div className="custom-container">
       <div>

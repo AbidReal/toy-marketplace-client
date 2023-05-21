@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const AllToys = () => {
+  //dynamic title
+  const pageName = "All Toys";
+
+  useEffect(() => {
+    document.title = `${pageName} | AceFig`;
+  }, [pageName]);
+
   const options = [{ value: "Price-Ascending" }, { value: "Price-Descending" }];
 
   const [searchText, setSearchText] = useState([]);

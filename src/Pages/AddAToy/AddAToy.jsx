@@ -1,10 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddAToy = () => {
+  //dynamic title
+  const pageName = "Add A Toy";
+
+  useEffect(() => {
+    document.title = `${pageName} | AceFig`;
+  }, [pageName]);
+
   const handleToast = () => {
     toast.success("Toy Added Successfully", {
       position: toast.POSITION.TOP_RIGHT,

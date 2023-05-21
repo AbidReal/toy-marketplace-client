@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
+  //dynamic title
+  const pageName = "404";
+
+  useEffect(() => {
+    document.title = `${pageName} | AceFig`;
+  }, [pageName]);
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <div className=" text-center align-middle font-extrabold text-8xl ">

@@ -1,9 +1,16 @@
+import { useEffect } from "react";
 import Banner from "./banner";
 import Discount from "./Discount";
 import Gallery from "./Gallery";
 import ShopByCategory from "./ShopByCategory";
 import Subscribe from "./Subscribe";
 const Home = () => {
+  //dynamic title
+  const pageName = "Home";
+
+  useEffect(() => {
+    document.title = `${pageName} | AceFig`;
+  }, [pageName]);
   return (
     <div>
       <Banner></Banner>

@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 
 const ToyDetails = () => {
+  //dynamic title
+  const pageName = "Toy Details";
+
+  useEffect(() => {
+    document.title = `${pageName} | AceFig`;
+  }, [pageName]);
+
   const toy = useLoaderData();
   const {
     seller_name,

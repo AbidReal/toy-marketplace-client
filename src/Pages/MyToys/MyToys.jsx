@@ -6,6 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 
 const MyToys = () => {
+  //dynamic title
+  const pageName = "My Toys";
+
+  useEffect(() => {
+    document.title = `${pageName} | AceFig`;
+  }, [pageName]);
+
   const handleToast = () => {
     toast.success("Toy Deleted Successfully", {
       position: toast.POSITION.TOP_RIGHT,
