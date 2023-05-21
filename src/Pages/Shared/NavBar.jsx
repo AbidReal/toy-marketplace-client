@@ -49,8 +49,9 @@ const NavBar = () => {
                 All Toys
               </NavLink>
             </li>
-            <li>
-              {user && (
+
+            {user && (
+              <li>
                 <NavLink
                   to="/my-toys"
                   className={({ isActive }) =>
@@ -59,8 +60,9 @@ const NavBar = () => {
                 >
                   My Toys
                 </NavLink>
-              )}
-            </li>
+              </li>
+            )}
+
             <li>
               <NavLink
                 to="/add-a-toy"

@@ -34,7 +34,7 @@ const AllToys = () => {
                 onChange={(e) => setSearchText(e.target.value)}
                 onKeyDown={handleKeyPress}
                 type="text"
-                placeholder="Search…"
+                placeholder="Search Name…"
                 className="input input-bordered bg-black "
               />
               <button
